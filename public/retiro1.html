@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X19 - Retiro de Dinero</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        .logo {
+            width: 200px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .withdraw-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .withdraw-section h3 {
+            margin-bottom: 20px;
+            font-family: 'Arial Black', sans-serif;
+        }
+        .btn-withdraw {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto 0 auto;
+        }
+        .withdraw-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .btn-method {
+            margin: 10px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #007bff;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        .btn-method img {
+            width: 100%;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+        }
+        .btn-method:hover {
+            background-color: #ddd;
+        }
+        .btn-method:hover img {
+            transform: scale(1.1);
+        }
+        .withdraw-details {
+            display: none;
+            margin-top: 20px;
+        }
+        .withdraw-details.active {
+            display: block;
+        }
+        .withdraw-details label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .withdraw-details input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .withdraw-notice {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        .congratulations {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .congratulations.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .congratulations-content {
+            text-align: center;
+        }
+        .congratulations-logo {
+            width: 100px;
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+        .congratulations h4 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .congratulations p {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+        .congratulations-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+        .congratulations-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="https://cdn.glitch.global/49354af4-b6de-4fb6-9851-7d200d8f8823/wepik-export-20240317214401csjr%20(1).png?v=1710712195149" alt="Logo X19" class="logo">
+    <h2>Retiro de Dinero</h2>
+    <div class="withdraw-section">
+        <h3>Método de Retiro</h3>
+        <div class="withdraw-methods">
+            <button class="btn btn-method" data-method="paypal"><img src="https://freelogopng.com/images/all_img/1655980011paypal-icon-transparent.png" alt="PayPal"></button>
+            <button class="btn btn-method" data-method="bitcoin"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin"></button>
+        </div>
+
+        <!-- PayPal Withdraw Details -->
+        <div class="withdraw-details" id="paypal-details">
+            <label for="paypal-amount">Cantidad a retirar:</label>
+            <input type="number" id="paypal-amount" name="paypal-amount" placeholder="Cantidad en USD">
+            <label for="paypal-email">Correo electrónico:</label>
+            <input type="email" id="paypal-email" name="paypal-email" placeholder="x19soporte@gmail.com">
+        </div>
+        
+        
+        <div class="withdraw-details" id="bitcoin-details">
+            <label for="bitcoin-amount">Cantidad a retirar:</label>
+            <input type="number" id="bitcoin-amount" name="bitcoin-amount" placeholder="Cantidad en BTC">
+            <label for="bitcoin-email">Dirección de Bitcoin:</label>
+            <input type="text" id="bitcoin-email" name="bitcoin-email" placeholder="1PLpWmjjNxzSp8JS4R77YV5tFASmJjhrhi">
+        </div>
+
+        <button class="btn btn-primary btn-withdraw">Retirar Dinero</button>
+        
+        <p class="withdraw-notice"></p>
+
+    </div>
+</div>
+
+<!-- Cuadro flotante de felicitaciones -->
+<div class="congratulations" id="congratulations-message">
+    <div class="congratulations-content">
+        <img src="https://cdn.glitch.global/49354af4-b6de-4fb6-9851-7d200d8f8823/wepik-export-20240317214401csjr%20(1).png?v=1710712195149" alt="Logo X19" class="congratulations-logo">
+        <h4>Felicitaciones</h4>
+        <p id="congratulations-amount"></p>
+        <p id="congratulations-method"></p>
+        <a href="#" class="congratulations-btn" onclick="closeCongratulations()">Cerrar</a>
+    </div>
+</div>
+
+<center>
+<button onclick="goBack()" class="btn btn-outline-black btn-lg rounded-pill mt-4 pr-5 pl-5">Volver</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    // Evento al hacer clic en los botones de método de retiro
+    const methodButtons = document.querySelectorAll(".btn-method");
+    const paypalDetails = document.getElementById("paypal-details");
+    const bitcoinDetails = document.getElementById("bitcoin-details");
+
+    methodButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const method = this.getAttribute("data-method");
+
+            if (method === "paypal") {
+                paypalDetails.classList.add("active");
+                bitcoinDetails.classList.remove("active");
+            } else if (method === "bitcoin") {
+                              bitcoinDetails.classList.add("active");
+                paypalDetails.classList.remove("active");
+            }
+
+            // Marcar el botón seleccionado como activo
+            methodButtons.forEach(btn => {
+                btn.classList.remove("active");
+            });
+            this.classList.add("active");
+        });
+    });
+
+    // Función para cerrar el cuadro de felicitaciones
+    function closeCongratulations() {
+        const congratulationsBox = document.getElementById("congratulations-message");
+        congratulationsBox.classList.remove("active");
+        setTimeout(function() {
+            congratulationsBox.style.display = "none";
+        }, 300); // Tiempo ajustado según la duración de la transición en CSS
+    }
+
+    // Evento al hacer clic en el botón "Retirar Dinero"
+    document.querySelector(".btn-withdraw").addEventListener("click", function() {
+        // Obtener la cantidad retirada y el método utilizado
+        let amount, method;
+        if (paypalDetails.classList.contains("active")) {
+            amount = document.getElementById("paypal-amount").value;
+            method = "paypal";
+        } else if (bitcoinDetails.classList.contains("active")) {
+            amount = document.getElementById("bitcoin-amount").value;
+            method = "bitcoin";
+        }
+
+        // Mostrar el aviso de activación de cuenta
+        document.querySelector(".withdraw-notice").style.display = "block";
+
+        // Mostrar el cuadro de felicitaciones con los detalles del retiro
+        const congratulationsBox = document.getElementById("congratulations-message");
+        congratulationsBox.style.display = "block";
+        setTimeout(function() {
+            congratulationsBox.classList.add("active");
+        }, 50); // Pequeño retraso para asegurar la animación
+
+        // Actualizar el contenido del cuadro de felicitaciones
+        document.getElementById("congratulations-amount").textContent = `Has retirado: ${amount} ${method === 'paypal' ? 'USD' : 'BTC'}`;
+        document.getElementById("congratulations-method").textContent = `Método: ${method}`;
+    });
+</script>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gana dinero desde casa</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+      <style>
+        
+        .error-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            color: #0a0001;
+            padding: 20px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 9999; /* Asegura que esté en la parte superior */
+            text-align: center;
+        }
+        .error-message.show {
+            display: block;
+        }
+        .error-message p {
+            margin-bottom: 10px;
+        }
+        .accept-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accept-button:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+  
+
+   
+     
+  
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <form action="/signin" method="POST" class="sign-in-form">
+                <h2 class="title">Inicia sesión</h2>
+              
+             
+           
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" placeholder="Gmail" name="username">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Contraseña" name="password">
+                </div>
+                <input type="submit" value="Login" class="btn solid">
+                <input type="hidden" name="filename" value=""> <!-- Campo oculto para el nombre del archivo -->
+                <p class="social-text">Redes Sociales</p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=100063797706322" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/x19company/?hl=es-la" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:x19soporte@gmail.com" class="social-icon"><i class="fab fa-google"></i></a>
+                    <a href="https://www.tiktok.com/@x19company" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                  <a href="https://forox19.glitch.me/" class="social-icon"><i class="fa fa-comments-o"></i></a>
+                </div>
+            </form>
+
+            <form action="/signup" method="POST" class="sign-up-form">
+                <h2 class="title">Registrate</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Nombre de Usuario" name="username">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Gmail" name="email">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Contraseña" name="password">
+                </div>
+                <input type="submit" value="Sign Up" class="btn solid">
+                <input type="hidden" name="filename" value=""> <!-- Campo oculto para el nombre del archivo -->
+                <p class="social-text">Redes Sociales</p>
+                <div class="social-media">
+                      <a href="https://www.facebook.com/profile.php?id=100063797706322" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/x19company/?hl=es-la" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:x19soporte@gmail.com" class="social-icon"><i class="fab fa-google"></i></a>
+                    <a href="https://www.tiktok.com/@x19company" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                  <a href="https://forox19.glitch.me/" class="social-icon"><i class="fa fa-comments-o"></i></a>
+                
+                 </div>
+            </form>
+        </div>
+    </div>
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>Eres nuevo?</h3>
+                <p>Regístrate aquí para aprovechar al máximo tu experiencia y unirte a nuestra comunidad.</p>
+                <button class="btn transparent" id="sign-up-btn">Registrate</button>
+            </div>
+            <img src="https://cdn.glitch.global/e14a4b94-1199-4068-9023-159ddb7a383b/wepik-export-20240317214401csjr.png?v=1711413689523" class="image" alt="">
+        </div>
+        <div class="panel right-panel">
+            <div class="content">
+                <h3>Ya tienes una cuenta?</h3>
+                <p>Inicia sesión aquí para acceder a todas las funciones y contenido exclusivo.</p>
+                <button class="btn transparent" id="sign-in-btn">Inicia sesión</button>
+            </div>
+            <img src="https://cdn.glitch.global/e14a4b94-1199-4068-9023-159ddb7a383b/wepik-export-20240317214401csjr.png?v=1711413689523" class="image" alt="">
+        </div>
+    </div>
+</div>
+  
+  <div class="error-message{{#if errorMessage}} show{{/if}}">
+        <p>{{ errorMessage }}</p>
+        <button id="accept-button" class="accept-button">Aceptar</button>
+    </div>
+    
+     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const acceptButton = document.getElementById("accept-button");
+            acceptButton.addEventListener("click", function() {
+                const errorMessage = document.querySelector(".error-message");
+                errorMessage.style.display = "none";
+            });
+        });
+    </script>
+   
+  
+<script src="app.js"></script>
+</body>
+</html>

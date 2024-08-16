@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X19 Programa de Referidos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #212529;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo img {
+            max-width: 200px;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+
+        .referral-text {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-copy {
+            margin-top: 10px;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+
+        .progress {
+            margin-top: 20px;
+        }
+
+        .counter {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .counter span {
+            font-weight: bold;
+        }
+
+        .warning-msg {
+            background-color: #ffc107;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .btn-copy {
+                font-size: 16px;
+            }
+
+            .counter {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://cdn.glitch.global/49354af4-b6de-4fb6-9851-7d200d8f8823/wepik-export-20240317214401csjr%20(1).png?v=1710712195149"
+                alt="Logo X19">
+        </div>
+
+        <h1>¡Invita a tus amigos y gana dinero!</h1>
+
+        <div class="referral-text">
+            <p>Por cada amigo que se registre, recibirá $3 de regalo y tú recibirás el 100% de su inversión.</p>
+            <button class="btn btn-primary btn-copy" onclick="copyText()">Copiar Enlace</button>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="20" aria-valuemin="0"
+                    aria-valuemax="100">0% Completado</div>
+            </div>
+            <div class="warning-msg" id="warningMsg">
+                <span class="close-btn" onclick="closeWarningMsg()">&times;</span>
+                ¡Enlace copiado correctamente!
+            </div>
+            <div class="counter">
+                <p>Invitaste a <span id="invitedFriends">0</span> amigos y ganaste <span id="earnedDollars">$0</span></p>
+            </div>
+        </div>
+    </div>
+
+  
+     <center>
+   
+      <button onclick="goBack()" class="btn btn-outline-light btn-lg rounded-pill mt-4 pr-5 pl-5">Volver</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+  
+  
+    <script>
+        function copyText() {
+            var texts = [
+               "¡Potencia tus ingresos con X19 y asegura tu bono de bienvenida de $50! Únete ahora mismo y descubre cómo cada actividad diaria puede ser tu fuente de dinero extra. Regístrate hoy y aprovecha todas las oportunidades que X19 tiene para ti. ¡No pierdas más tiempo, regístrate ahora! https://x19.glitch.me/",
+                "¡Da un impulso a tus finanzas con X19 y asegura tu bono de $50 al registrarte! Descubre cómo cada acción cuenta en nuestro camino hacia el éxito financiero. Únete hoy mismo a nuestra comunidad de ganadores y comienza a ganar mientras disfrutas de la vida. ¡Regístrate ahora y asegura tu bono de bienvenida! https://x19.glitch.me/",
+                "¿Listo para ganar dinero desde el primer momento? ¡Regístrate en X19 y asegura tu bono de bienvenida de $50! Descubre cómo cada tarea cuenta y cada esfuerzo se recompensa en nuestra plataforma. ¡No esperes más para empezar a ganar, regístrate ahora mismo y asegura tu bono! https://x19.glitch.me/",
+                "¡No te pierdas la oportunidad de ganar con X19! Regístrate hoy y asegura tu bono de bienvenida de $50. Descubre cómo puedes convertir tus actividades diarias en ingresos reales. ¡Únete ahora y comienza a ganar desde el primer momento! https://x19.glitch.me/",
+                "¡Regístrate ahora en X19 y asegura tu bono de $50 para empezar a ganar desde hoy mismo! Descubre cómo tus tareas diarias se convierten en ganancias reales en nuestra plataforma. No esperes más, ¡únete a nosotros y asegura tu bono de bienvenida! https://x19.glitch.me/"
+           ];
+            var randomIndex = Math.floor(Math.random() * texts.length);
+            var textToCopy = texts[randomIndex];
+            var textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            document.getElementById("warningMsg").style.display = "block";
+        }
+
+        function closeWarningMsg() {
+            document.getElementById("warningMsg").style.display = "none";
+        }
+
+        // Función para actualizar el contador de amigos invitados y dinero ganado
+        function updateCounter(invited, dollars) {
+            document.getElementById("invitedFriends").textContent = invited;
+            document.getElementById("earnedDollars").textContent = "$" + dollars;
+        }
+
+        // Llamar a la función updateCounter con los valores apropiados
+        updateCounter(0, 0); // Por ejemplo, 10 amigos invitados y $50 ganados
+    </script>
+</body>
+
+</html>
